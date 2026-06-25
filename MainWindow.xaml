@@ -1,0 +1,105 @@
+﻿<Window x:Class="CybersecurityChatbot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Cybersecurity Chatbot" Height="650" Width="850"
+        WindowStartupLocation="CenterScreen"
+        Background="#1E1E2E">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Title -->
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Cybersecurity Chatbot" 
+                   FontSize="20" FontWeight="Bold" Foreground="White" 
+                   HorizontalAlignment="Center" Margin="0,10,0,10"/>
+
+        <!-- Chat Display -->
+        <RichTextBox x:Name="rtxtChatDisplay" Grid.Row="1" Grid.Column="0"
+                     Background="#2D2D3D" Foreground="White" 
+                     FontFamily="Consolas" FontSize="12"
+                     Margin="10,0,0,10" Padding="10"
+                     BorderBrush="#3D3D4D" BorderThickness="1"
+                     IsReadOnly="True">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+
+        <!-- Button Panel -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,10,10" Width="150">
+            <Button x:Name="btnViewTasks" Content="View Tasks" 
+                    Background="#0078D4" Foreground="White" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="BtnViewTasks_Click"/>
+            <Button x:Name="btnStartQuiz" Content="Start Quiz" 
+                    Background="#28A745" Foreground="White" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="BtnStartQuiz_Click"/>
+            <Button x:Name="btnViewLog" Content="Activity Log" 
+                    Background="#FFC107" Foreground="Black" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="BtnViewLog_Click"/>
+            <Button x:Name="btnClear" Content="Clear Chat" 
+                    Background="#DC3545" Foreground="White" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="BtnClear_Click"/>
+
+            <Border Background="#1A1A2E" Margin="0,10,0,0" Padding="5" CornerRadius="5">
+                <TextBlock x:Name="txtASCIIArt" Text="
+    +-----------+
+    |  LOCK    |
+    |  ICON    |
+    +-----------+
+    Stay Safe"
+                           Foreground="LightGreen" FontFamily="Consolas" FontSize="10"
+                           HorizontalAlignment="Center"/>
+            </Border>
+        </StackPanel>
+
+        <!-- Input Area -->
+        <Grid Grid.Row="2" Grid.Column="0" Margin="10,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="txtUserInput" Grid.Column="0"
+                     Background="#3D3D4D" Foreground="White" 
+                     FontFamily="Consolas" FontSize="12"
+                     Padding="10" BorderBrush="#4D4D5D" BorderThickness="1"
+                     KeyDown="TxtUserInput_KeyDown"/>
+
+            <Button x:Name="btnSend" Grid.Column="1" Content="Send" 
+                    Background="#0078D4" Foreground="White" 
+                    Width="80" Margin="10,0,0,0"
+                    Click="BtnSend_Click"/>
+        </Grid>
+
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="2" Background="#2D2D3D">
+            <StatusBarItem>
+                <TextBlock x:Name="txtStatus" Text="Ready" Foreground="LightGreen"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock x:Name="txtTime" Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat=HH:mm:ss}" Foreground="Gray"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
